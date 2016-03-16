@@ -2,17 +2,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>uk.ac.ebi.intact.maven</groupId>
-    <artifactId>maven-poms</artifactId>
-    <packaging>pom</packaging>
-    <version>1.2-SNAPSHOT</version>
-    <name>Master POMs</name>
-    <url>http://www.ebi.ac.uk/intact</url>
-    <description>POM to build the master POMs</description>
 
-    <properties>
-        <maven.deploy.skip>true</maven.deploy.skip>
-    </properties>
+    <groupId>uk.ac.ebi.intact.maven</groupId>
+    <artifactId>intact-master</artifactId>
+    <packaging>pom</packaging>
+    <name>Master POMs :: Master POM</name>
+    <version>23-SNAPSHOT</version>
+
+    <description>This is a master POM that is meant to be used by the various Intact modules. It contains information
+        that is common to all projects.
+    </description>
+
+    <modules>
+        <module>master-hibernate-pom</module>
+    </modules>
 
     <scm>
         <connection>scm:git:https://github.com/EBI-IntAct/maven-master.git</connection>
@@ -21,8 +24,273 @@
         <tag>HEAD</tag>
     </scm>
 
-    <modules>
-        <module>master-pom</module>
-        <module>master-hibernate-pom</module>
-    </modules>
+    <properties>
+        <institution>ebi</institution>
+        <deploy.host>bark.ebi.ac.uk</deploy.host>
+        <assembly.outputDirectory>target/assembly/out</assembly.outputDirectory>
+        <site.remote.basedir>scp://quanea2.ebi.ac.uk/ebi/sp/pro6/intact/local/doc/devsite</site.remote.basedir>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>anjali</id>
+            <name>Anjali Shrivastava</name>
+            <email>anjali@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <id>ntoro</id>
+            <name>Noemi Del Toro Ayllon</name>
+            <email>ntoro@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <id>mkoch</id>
+            <name>Maximilian Koch</name>
+            <email>mkoch@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+            <name>Arnaud Ceol</name>
+            <email>arnaud.ceol@uniroma2.it</email>
+            <organization>MINT - University of Rome</organization>
+            <organizationUrl>http://mint.bio.uniroma2.it/mint/</organizationUrl>
+            <timezone>+1</timezone>
+        </contributor>
+        <contributor>
+            <name>Samuel Kerrien</name>
+            <email>skerrien@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </contributor>
+        <contributor>
+            <name>Marine Dumousseau</name>
+            <email>marine@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </contributor>
+        <contributor>
+            <name>Bruno Aranda</name>
+            <email>baranda@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </contributor>
+    </contributors>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>European Bioinformatics Institute, EBI</name>
+        <url>http://www.ebi.ac.uk/</url>
+    </organization>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-alpha-5</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.myfaces.tobago</groupId>
+                    <artifactId>maven-apt-plugin</artifactId>
+                    <version>1.0.23</version>
+                    <executions>
+                        <execution>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <generated>target/jax-ws-apt-sources</generated>
+                                <aptOptions>x=3</aptOptions>
+                                <nocompile>false</nocompile>
+                                <showWarnings>true</showWarnings>
+                                <fork>true</fork>
+                            </configuration>
+                            <goals>
+                                <goal>execute</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--
+                                <plugin>
+                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                    <configuration>
+                                        <source>1.5</source>
+                                        <aggregate>true</aggregate>
+                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+                                        <docletArtifact>
+                                            <groupId>gr.spinellis</groupId>
+                                            <artifactId>UmlGraph</artifactId>
+                                            <version>4.6</version>
+                                        </docletArtifact>
+                                        <additionalparam>
+                                            -inferrel -inferdep -quiet -hide java.*
+                                            -collpackages java.util.* -qualify
+                                            -postfixpackage -nodefontsize 9
+                                            -nodefontpackagesize 7
+                                        </additionalparam>
+                                    </configuration>
+                                </plugin>
+                -->
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <finalName>${artifactId}-${version}</finalName>
+                        <descriptorRefs>
+                            <param>src</param>
+                        </descriptorRefs>
+                        <outputDirectory>${assembly.outputDirectory}</outputDirectory>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5</version>
+                    <configuration>
+                        <goals>deploy</goals>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <excludes>
+                        <exclude>**/test/**/*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>attach-javadocs</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.7</version>
+                        <configuration>
+                            <source>1.6</source>
+                            <aggregate>true</aggregate>
+                            <!--
+                                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+                                                        <docletArtifact>
+                                                            <groupId>gr.spinellis</groupId>
+                                                            <artifactId>UmlGraph</artifactId>
+                                                            <version>4.6</version>
+                                                        </docletArtifact>
+                                                        <additionalparam>
+                                                            -inferrel -inferdep -quiet -hide java.*
+                                                            -collpackages java.util.* -qualify
+                                                            -postfixpackage -nodefontsize 9
+                                                            -nodefontpackagesize 7
+                                                        </additionalparam>-->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--  REPORTS -->
+    <reporting>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+            </plugin>
+
+        </plugins>
+
+    </reporting>
+
+    <repositories>
+        <repository>
+            <id>nexus-ebi-repo-old</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-release-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-snapshot-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
+        </repository>
+    </repositories>
+
+    <!-- Overwrites the previous repositories-->
+    <distributionManagement>
+        <!-- EBI repo -->
+        <repository>
+            <id>pst-release</id>
+            <name>EBI Nexus Repository</name>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release</url>
+        </repository>
+        <!-- EBI SNAPSHOT repo -->
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>pst-snapshots</id>
+            <name>EBI Nexus Snapshots Repository</name>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
