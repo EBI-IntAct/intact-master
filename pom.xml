@@ -17,9 +17,9 @@
     </modules>
 
     <scm>
-        <connection>scm:git:https://github.com/EBI-IntAct/maven-master.git</connection>
-        <developerConnection>scm:git:https://github.com/EBI-IntAct/maven-master.git</developerConnection>
-        <url>https://github.com/EBI-IntAct/maven-master</url>
+        <connection>scm:git:https://github.com/EBI-IntAct/intact-master.git</connection>
+        <developerConnection>scm:git:https://github.com/EBI-IntAct/intact-master.git</developerConnection>
+        <url>https://github.com/EBI-IntAct/intact-master</url>
         <tag>HEAD</tag>
     </scm>
 
