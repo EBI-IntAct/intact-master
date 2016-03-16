@@ -10,37 +10,19 @@
     <url>http://www.ebi.ac.uk/intact</url>
     <description>POM to build the master POMs</description>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <scm>
-        <connection>scm:svn:https://intact.svn.sourceforge.net/svnroot/intact/repo/maven/trunk</connection>
-        <developerConnection>scm:svn:https://intact.svn.sourceforge.net/svnroot/intact/repo/maven/trunk
-        </developerConnection>
-        <url>http://intact.svn.sourceforge.net/viewcvs.cgi/intact/repo/maven/trunk/</url>
+        <connection>scm:git:https://github.com/EBI-IntAct/maven-master.git</connection>
+        <developerConnection>scm:git:https://github.com/EBI-IntAct/maven-master.git</developerConnection>
+        <url>https://github.com/EBI-IntAct/maven-master</url>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
         <module>master-pom</module>
         <module>master-hibernate-pom</module>
     </modules>
-
-    <distributionManagement>
-        <repository>
-            <id>ebi-repo</id>
-            <url>http://www.ebi.ac.uk/interpro/internal-tools/intact-maven/nexus/content/repositories/ebi-repo</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>ebi-repo-snapshots</id>
-            <url>
-                http://www.ebi.ac.uk/interpro/internal-tools/intact-maven/nexus/content/repositories/ebi-repo-snapshots
-            </url>
-        </snapshotRepository>
-
-        <site>
-            <id>intact-site</id>
-            <name>Intact site</name>
-            <url>${site.remote.basedir}/${artifactId}</url>
-        </site>
-    </distributionManagement>
-
-
 </project>
