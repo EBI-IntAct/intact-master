@@ -1,13 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>uk.ac.ebi.intact.maven</groupId>
     <artifactId>intact-master</artifactId>
     <packaging>pom</packaging>
     <name>Master POMs :: Master POM</name>
     <version>23-SNAPSHOT</version>
-    
+
     <description>This is a master POM that is meant to be used by the various Intact modules. It contains information
         that is common to all projects.
     </description>
@@ -108,27 +109,27 @@
                         </execution>
                     </executions>
                 </plugin>
-<!--
-                <plugin>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <configuration>
-                        <source>1.5</source>
-                        <aggregate>true</aggregate>
-                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-                        <docletArtifact>
-                            <groupId>gr.spinellis</groupId>
-                            <artifactId>UmlGraph</artifactId>
-                            <version>4.6</version>
-                        </docletArtifact>
-                        <additionalparam>
-                            -inferrel -inferdep -quiet -hide java.*
-                            -collpackages java.util.* -qualify
-                            -postfixpackage -nodefontsize 9
-                            -nodefontpackagesize 7
-                        </additionalparam>
-                    </configuration>
-                </plugin>
--->
+                <!--
+                                <plugin>
+                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                    <configuration>
+                                        <source>1.5</source>
+                                        <aggregate>true</aggregate>
+                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+                                        <docletArtifact>
+                                            <groupId>gr.spinellis</groupId>
+                                            <artifactId>UmlGraph</artifactId>
+                                            <version>4.6</version>
+                                        </docletArtifact>
+                                        <additionalparam>
+                                            -inferrel -inferdep -quiet -hide java.*
+                                            -collpackages java.util.* -qualify
+                                            -postfixpackage -nodefontsize 9
+                                            -nodefontpackagesize 7
+                                        </additionalparam>
+                                    </configuration>
+                                </plugin>
+                -->
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>2.2</version>
@@ -192,19 +193,19 @@
                         <configuration>
                             <source>1.6</source>
                             <aggregate>true</aggregate>
-<!--
-                            <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-                            <docletArtifact>
-                                <groupId>gr.spinellis</groupId>
-                                <artifactId>UmlGraph</artifactId>
-                                <version>4.6</version>
-                            </docletArtifact>
-                            <additionalparam>
-                                -inferrel -inferdep -quiet -hide java.*
-                                -collpackages java.util.* -qualify
-                                -postfixpackage -nodefontsize 9
-                                -nodefontpackagesize 7
-                            </additionalparam>-->
+                            <!--
+                                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+                                                        <docletArtifact>
+                                                            <groupId>gr.spinellis</groupId>
+                                                            <artifactId>UmlGraph</artifactId>
+                                                            <version>4.6</version>
+                                                        </docletArtifact>
+                                                        <additionalparam>
+                                                            -inferrel -inferdep -quiet -hide java.*
+                                                            -collpackages java.util.* -qualify
+                                                            -postfixpackage -nodefontsize 9
+                                                            -nodefontpackagesize 7
+                                                        </additionalparam>-->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -241,7 +242,7 @@
 
     <reporting>
         <plugins>
-           
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
