@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     <version>45-SNAPSHOT</version>
 
-    <url>http://www.ebi.ac.uk/~intact/devsite/${artifactId}</url>
+    <url>http://www.ebi.ac.uk/~intact/devsite/${project.artifactId}</url>
     <name>Master POMs :: Master Hibernate POM</name>
     <description>This is a master POM that contains the data access (hibernate) configuration</description>
 
@@ -39,7 +39,7 @@
             </activation>
 
             <build>
-                <finalName>${artifactId}-${db.alias}-${version}</finalName>
+                <finalName>${project.artifactId}-${db.alias}-${project.version}</finalName>
             </build>
 
             <properties>
@@ -47,7 +47,7 @@
                 <db.driver>oracle.jdbc.OracleDriver</db.driver>
                 <db.protocol>jdbc</db.protocol>
                 <db.subprotocol>oracle:thin:@${db.host}:${db.port}</db.subprotocol>
-                <db.dialect>org.hibernate.dialect.Oracle9iDialect</db.dialect>
+                <db.dialect>org.hibernate.dialect.Oracle11gDialect</db.dialect>
                 <db.separator>:</db.separator>
             </properties>
 
@@ -70,7 +70,7 @@
             </activation>
 
             <build>
-                <finalName>${artifactId}-${db.alias}-${version}</finalName>
+                <finalName>${project.artifactId}-${db.alias}-${project.version}</finalName>
             </build>
 
             <properties>
@@ -101,7 +101,7 @@
             </activation>
 
             <build>
-                <finalName>${artifactId}-${db.platform}-${version}</finalName>
+                <finalName>${project.artifactId}-${db.platform}-${project.version}</finalName>
             </build>
 
             <properties>
@@ -131,7 +131,7 @@
             </activation>
 
             <build>
-                <finalName>${artifactId}-${db.platform}-${version}</finalName>
+                <finalName>${project.artifactId}-${db.platform}-${project.version}</finalName>
             </build>
 
             <properties>
@@ -208,7 +208,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.2.121</version>
+            <version>1.4.200</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,9 +29,19 @@
         <deploy.host>bark.ebi.ac.uk</deploy.host>
         <assembly.outputDirectory>target/assembly/out</assembly.outputDirectory>
         <site.remote.basedir>scp://quanea2.ebi.ac.uk/ebi/sp/pro6/intact/local/doc/devsite</site.remote.basedir>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <developers>
+        <developer>
+            <id>eragueneau</id>
+            <name>Eliot Ragueneau</name>
+            <email>eragueneau@ebi.ac.uk</email>
+            <organization>IntAct - EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk/intact</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
         <developer>
             <id>anjali</id>
             <name>Anjali Shrivastava</name>
@@ -108,7 +119,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh-external</artifactId>
-                <version>1.0-alpha-5</version>
+                <version>2.10</version>
             </extension>
         </extensions>
 
@@ -134,32 +145,11 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!--
-                                <plugin>
-                                    <artifactId>maven-javadoc-plugin</artifactId>
-                                    <configuration>
-                                        <source>1.5</source>
-                                        <aggregate>true</aggregate>
-                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-                                        <docletArtifact>
-                                            <groupId>gr.spinellis</groupId>
-                                            <artifactId>UmlGraph</artifactId>
-                                            <version>4.6</version>
-                                        </docletArtifact>
-                                        <additionalparam>
-                                            -inferrel -inferdep -quiet -hide java.*
-                                            -collpackages java.util.* -qualify
-                                            -postfixpackage -nodefontsize 9
-                                            -nodefontpackagesize 7
-                                        </additionalparam>
-                                    </configuration>
-                                </plugin>
-                -->
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <finalName>${artifactId}-${version}</finalName>
+                        <finalName>${project.artifactId}-${project.version}</finalName>
                         <descriptorRefs>
                             <param>src</param>
                         </descriptorRefs>
@@ -183,8 +173,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <excludes>
                         <exclude>**/test/**/*.java</exclude>
                     </excludes>
@@ -203,6 +193,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
 
         </plugins>
     </build>
@@ -214,24 +209,19 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.7</version>
+                        <version>3.2.0</version>
                         <configuration>
-                            <source>1.6</source>
-                            <aggregate>true</aggregate>
-                            <!--
-                                                        <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-                                                        <docletArtifact>
-                                                            <groupId>gr.spinellis</groupId>
-                                                            <artifactId>UmlGraph</artifactId>
-                                                            <version>4.6</version>
-                                                        </docletArtifact>
-                                                        <additionalparam>
-                                                            -inferrel -inferdep -quiet -hide java.*
-                                                            -collpackages java.util.* -qualify
-                                                            -postfixpackage -nodefontsize 9
-                                                            -nodefontpackagesize 7
-                                                        </additionalparam>-->
+                            <source>11</source>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>aggregate</id>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -242,7 +232,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.3.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -254,7 +244,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>3.2.0</version>
             </plugin>
 
         </plugins>
@@ -290,6 +280,7 @@
             <id>pst-snapshots</id>
             <name>EBI Nexus Snapshots Repository</name>
             <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
+<!--            <url>http://wp-p1m2-e4:8081/nexus/repository/pst-snapshots/</url>-->
         </snapshotRepository>
     </distributionManagement>
 </project>
