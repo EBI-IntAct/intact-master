@@ -17,6 +17,10 @@
 
     <properties>
         <hibernate.scope>runtime</hibernate.scope>
+        <hibernate.version>5.0.12.Final</hibernate.version>
+        <hibernate.validator.version>5.3.6.Final</hibernate.validator.version>
+        <hibernate.jpa.version>1.0.2.Final</hibernate.jpa.version>
+        <h2.version>1.4.197</h2.version>
     </properties>
 
     <build>
@@ -47,7 +51,7 @@
                 <db.driver>oracle.jdbc.OracleDriver</db.driver>
                 <db.protocol>jdbc</db.protocol>
                 <db.subprotocol>oracle:thin:@${db.host}:${db.port}</db.subprotocol>
-                <db.dialect>org.hibernate.dialect.Oracle11gDialect</db.dialect>
+                <db.dialect>org.hibernate.dialect.Oracle10gDialect</db.dialect>
                 <db.separator>:</db.separator>
             </properties>
 
@@ -116,7 +120,7 @@
                 <dependency>
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
-                    <version>1.4.197</version>
+                    <version>${h2.version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -158,12 +162,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.0.12.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.0.12.Final</version>
+            <version>${hibernate.version}</version>
             <exclusions>
                 <!-- using the clib-nodep below, which includes dependencies such as asm -->
                 <exclusion>
@@ -186,7 +190,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.3.5.Final</version>
+            <version>${hibernate.validator.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.xml.bind</groupId>
@@ -202,13 +206,13 @@
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Final</version>
+            <version>${hibernate.jpa.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.197</version>
+            <version>${h2.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
