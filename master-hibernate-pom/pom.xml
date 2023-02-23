@@ -3,13 +3,13 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-master</artifactId>
-        <version>24</version>
+        <version>25</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>intact-hibernate-master</artifactId>
     <packaging>pom</packaging>
-    <version>46</version>
+    <version>47</version>
 
     <url>http://www.ebi.ac.uk/~intact/devsite/${project.artifactId}</url>
     <name>Master POMs :: Master Hibernate POM</name>
@@ -50,9 +50,9 @@
                 <db.platform>Oracle</db.platform>
                 <db.driver>oracle.jdbc.OracleDriver</db.driver>
                 <db.protocol>jdbc</db.protocol>
-                <db.subprotocol>oracle:thin:@${db.host}:${db.port}</db.subprotocol>
-                <db.dialect>org.hibernate.dialect.Oracle10gDialect</db.dialect>
-                <db.separator>:</db.separator>
+                <db.subprotocol>oracle:thin:@//${db.host}:${db.port}</db.subprotocol>
+                <db.dialect>org.hibernate.dialect.Oracle12cDialect</db.dialect>
+                <db.separator>/</db.separator>
             </properties>
 
             <dependencies>
