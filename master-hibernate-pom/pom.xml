@@ -3,13 +3,13 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-master</artifactId>
-        <version>24</version>
+        <version>24.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>intact-hibernate-master</artifactId>
     <packaging>pom</packaging>
-    <version>46</version>
+    <version>46.1</version>
 
     <url>http://www.ebi.ac.uk/~intact/devsite/${project.artifactId}</url>
     <name>Master POMs :: Master Hibernate POM</name>
@@ -17,8 +17,8 @@
 
     <properties>
         <hibernate.scope>runtime</hibernate.scope>
-        <hibernate.version>5.0.12.Final</hibernate.version>
-        <hibernate.validator.version>5.3.6.Final</hibernate.validator.version>
+        <hibernate.version>5.6.15.Final</hibernate.version>
+        <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
         <hibernate.jpa.version>1.0.2.Final</hibernate.jpa.version>
         <h2.version>1.4.197</h2.version>
     </properties>
