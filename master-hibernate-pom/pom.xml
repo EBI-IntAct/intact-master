@@ -3,13 +3,13 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-master</artifactId>
-        <version>26-SNAPSHOT</version>
+        <version>26</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>intact-hibernate-master</artifactId>
     <packaging>pom</packaging>
-    <version>48-SNAPSHOT</version>
+    <version>48</version>
 
     <url>http://www.ebi.ac.uk/~intact/devsite/${project.artifactId}</url>
     <name>Master POMs :: Master Hibernate POM</name>
